@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Love</title>
-
+  <title>Golden Brown Tribute</title>
   <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
     .video-bg {
       position: fixed;
       top: 0;
@@ -15,49 +27,39 @@
       z-index: -1;
     }
 
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-      color: white;
-      font-family: Arial, sans-serif;
-      background: rgba(0,0,0,0.4);
-    }
-
     h1 {
       font-size: 3rem;
       text-shadow: 2px 2px 8px black;
       margin-bottom: 10px;
+      color: rgb(106, 90, 205);
     }
-img {
-  width: 60vh;        /* fixed width */
-  height: 60vh;       /* fixed height to make it square */
-  object-fit: cover;  /* ensures the image fills the square */
-  margin-top: 50px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-}
+
+    img {
+      width: 60vh;
+      height: 60vh;
+      object-fit: cover;
+      margin-top: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    audio {
+      margin-top: 20px;
+    }
 
     .lyrics {
       margin-top: 20px;
-      max-width: 80%;
       font-size: 1.2rem;
       line-height: 1.6;
       text-shadow: 1px 1px 6px black;
-      white-space: pre-line;
-      animation: fadeIn 5s ease-in-out;
+      min-height: 4em;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .highlight {
+      color: gold;
+      font-weight: bold;
     }
   </style>
 </head>
-
 <body>
 
   <!-- Background Video -->
@@ -67,43 +69,58 @@ img {
   </video>
 
   <!-- Heading -->
-  <h1 style="color:rgb(106, 90, 205);">My Love ❤️</h1>
+  <h1>My Love ❤️</h1>
 
   <!-- Square Image -->
   <img src="https://raw.githubusercontent.com/Gowri630/sample/main/my%20love.jpeg" alt="My Love">
 
-  <!-- Audio Player for Golden Brown -->
-  <audio autoplay controls>
-    <source src="https://raw.githubusercontent.com/YourUsername/YourRepo/main/golden-brown.mp3" type="audio/mp3">
+  <!-- Audio Player -->
+  <audio id="song" controls autoplay>
+    <source src="https://raw.githubusercontent.com/Gowri630/sample/main/golden-brown.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Lyrics Section -->
-  <div class="lyrics">
-Golden brown, texture like sun<br>
-Lays me down, with my mind she runs<br>
-Throughout the night, no need to fight<br>
-Never a frown with golden brown<br><br>
+  <!-- Lyrics Display -->
+  <div class="lyrics" id="lyrics"></div>
 
-Every time, just like the last<br>
-On her ship, tied to the mast<br>
-To distant lands, takes both my hands<br>
-Never a frown with golden brown<br><br>
+  <script>
+    const timedLyrics = [
+      { time: 0, text: "Golden brown, texture like sun" },
+      { time: 6, text: "Lays me down, with my mind she runs" },
+      { time: 12, text: "Throughout the night, no need to fight" },
+      { time: 18, text: "Never a frown with golden brown" },
+      { time: 30, text: "Every time, just like the last" },
+      { time: 36, text: "On her ship, tied to the mast" },
+      { time: 42, text: "To distant lands, takes both my hands" },
+      { time: 48, text: "Never a frown with golden brown" },
+      { time: 60, text: "Golden brown, finer temptress" },
+      { time: 66, text: "Through the ages, she's heading west" },
+      { time: 72, text: "From far away, stays for a day" },
+      { time: 78, text: "Never a frown with golden brown" },
+      { time: 90, text: "Never a frown (Never a frown)" },
+      { time: 96, text: "(Never a frown) With golden brown (With golden brown)" },
+      { time: 102, text: "(With golden brown) Never a frown (Never a frown)" },
+      { time: 108, text: "(Never a frown) With golden brown (With golden brown)" },
+      { time: 114, text: "(With golden brown) Never a frown (Never a frown)" },
+      { time: 120, text: "(Never a frown) With golden brown (With golden brown)" },
+      { time: 126, text: "(With golden brown) Never a frown (Never a frown)" },
+      { time: 132, text: "(Never a frown) With golden brown (With golden brown)" }
+    ];
 
-Golden brown, finer temptress<br>
-Through the ages, she's heading west<br>
-From far away, stays for a day<br>
-Never a frown with golden brown<br><br>
+    const audio = document.getElementById("song");
+    const lyricsDiv = document.getElementById("lyrics");
 
-Never a frown (Never a frown)<br>
-(Never a frown) With golden brown (With golden brown)<br>
-(With golden brown) Never a frown (Never a frown)<br>
-(Never a frown) With golden brown (With golden brown)<br>
-(With golden brown) Never a frown (Never a frown)<br>
-(Never a frown) With golden brown (With golden brown)<br>
-(With golden brown) Never a frown (Never a frown)<br>
-(Never a frown) With golden brown (With golden brown)
-  </div>
+    audio.addEventListener("timeupdate", () => {
+      const currentTime = audio.currentTime;
+      const currentLine = timedLyrics.find((line, i) => {
+        const next = timedLyrics[i + 1];
+        return currentTime >= line.time && (!next || currentTime < next.time);
+      });
+      if (currentLine) {
+        lyricsDiv.innerHTML = `<span class="highlight">${currentLine.text}</span>`;
+      }
+    });
+  </script>
 
 </body>
 </html>
