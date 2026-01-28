@@ -42,10 +42,6 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
     }
 
-    audio {
-      margin-top: 20px;
-    }
-
     .lyrics {
       margin-top: 20px;
       font-size: 1.2rem;
@@ -74,8 +70,8 @@
   <!-- Square Image -->
   <img src="https://raw.githubusercontent.com/Gowri630/sample/main/my%20love.jpeg" alt="My Love">
 
-  <!-- Audio Player -->
-  <audio id="song" controls autoplay>
+  <!-- Audio Player (autoplay without controls) -->
+  <audio id="song" autoplay loop>
     <source src="https://raw.githubusercontent.com/Gowri630/sample/main/golden-brown.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
