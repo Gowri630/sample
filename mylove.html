@@ -5,7 +5,6 @@
   <title>My Love</title>
 
   <style>
-    /* Video background */
     .video-bg {
       position: fixed;
       top: 0;
@@ -26,20 +25,35 @@
       text-align: center;
       color: white;
       font-family: Arial, sans-serif;
-      background: rgba(0,0,0,0.4); /* fallback */
+      background: rgba(0,0,0,0.4);
     }
 
     h1 {
       font-size: 3rem;
       text-shadow: 2px 2px 8px black;
+      margin-bottom: 10px;
     }
 
     img {
       max-width: 70%;
       height: 50vh;
-      margin-top: -20px;
-      border-radius: 0;
+      margin-top: 5px;
       box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .lyrics {
+      margin-top: 20px;
+      max-width: 80%;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      text-shadow: 1px 1px 6px black;
+      white-space: pre-line;
+      animation: fadeIn 5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -52,11 +66,25 @@
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Content -->
-  <h1 styple="color:rgb(106, 90, 205);">My Love ❤️</h1>
+  <!-- Heading -->
+  <h1 style="color:rgb(106, 90, 205);">My Love ❤️</h1>
 
-  <img src="https://raw.githubusercontent.com/Gowri630/sample/main/my%20love.jpeg"
-       alt="My Love">
+  <!-- Image -->
+  <img src="https://raw.githubusercontent.com/Gowri630/sample/main/my%20love.jpeg" alt="My Love">
+
+  <!-- Audio Player for Golden Brown -->
+  <audio autoplay controls>
+    <source src="golden-brown.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Lyrics Section -->
+  <div class="lyrics">
+    Golden brown, texture like sun<br>
+    Lays me down, with my mind she runs<br>
+    Throughout the night, no need to fight<br>
+    Never a frown with golden brown...
+  </div>
 
 </body>
 </html>
